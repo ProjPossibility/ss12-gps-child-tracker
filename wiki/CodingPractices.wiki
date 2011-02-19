@@ -1,1 +1,3 @@
 useCamelCasePleaseForVariablesAndMethodsPlease;
+
+CONSTANTS_LOOK_LIKE_THIS;
