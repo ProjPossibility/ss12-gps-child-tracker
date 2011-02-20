@@ -27,8 +27,6 @@ public class Map extends MapActivity{
         kidGeoPoint = new GeoPoint(12000000, 3000000);
         mapView = (MapView) findViewById(R.id.mapview);
         
-        GeoPoint GP = new GeoPoint(12000000, 3000000);
-
         
         Button findChildBtn = (Button) findViewById(R.id.findChildBtn);
         findChildBtn.setOnClickListener(new OnClickListener() {
@@ -39,7 +37,12 @@ public class Map extends MapActivity{
                 mapView.getController().setZoom(6);
            }	
         });  
+        
+        kidLocationOverlay kidLocationOverlay = new kidLocationOverlay(kidGeoPoint);        
+        mapView.getOverlays().add(kidLocationOverlay);
     }
+    
+    
     @Override
     protected boolean isRouteDisplayed() {
         return false;
