@@ -1,3 +1,5 @@
 useCamelCasePleaseForVariablesAndMethodsPlease;
 
 CONSTANTS_LOOK_LIKE_THIS;
+
+The autistic kid's name is always Jimmy.
