@@ -1,0 +1,6 @@
+DrivingDirections.Mode mode = Mode.DRIVING; // or Mode.WALKING
+DrivingDirections directions = DrivingDirectionsFactory.createDrivingDirections();
+directions.driveTo(startPoint, endPoint, mode, this);
+
+The Activity can then implement the interface:
+DrivingDirections.IDirectionsListener
