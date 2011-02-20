@@ -26,8 +26,8 @@ public class KidLocationOverlay extends Overlay {
 		// Converts lat/lng-Point to OUR coordinates on the screen.
 		Point myScreenCoords = new Point();
 		mapView.getProjection().toPixels(point, myScreenCoords);
-		paint.setStrokeWidth(20);
-		paint.setARGB(255, 255, 255, 255);
+		paint.setStrokeWidth(15);
+		paint.setARGB(255, 255, 0, 0);
 		paint.setStyle(Paint.Style.STROKE);
 		/*
 		Bitmap bmp = BitmapFactory.decodeResource( getResources(), R.drawable.icon);

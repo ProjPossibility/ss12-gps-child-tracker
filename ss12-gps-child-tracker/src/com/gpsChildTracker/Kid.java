@@ -1,5 +1,7 @@
 package com.gpsChildTracker;
 
+import java.util.ArrayList;
+
 import com.google.android.maps.GeoPoint;
 
 public class Kid {
@@ -8,9 +10,11 @@ public class Kid {
 	GeoPoint point;  //Stores the kid's current latitude and longitude
 	KidLocationOverlay overlay;         //Stores the overlay to display for this kid
 	Trip trip;    //Stores the kid's trip start and end points
+	ArrayList<KidLocationOverlay> locationHistory;
 	
 	//default constructor
 	public Kid() {
+		locationHistory = new ArrayList<KidLocationOverlay>();
 		//nothing happens
 	}
 	
@@ -38,6 +42,14 @@ public class Kid {
 
 	public void setTrip(Trip tripIn){
 		trip = tripIn;
+	}
+	
+	public void addLocationHistoryPoint(GeoPoint p){
+		locationHistory.add(new KidLocationOverlay(p));
+	}
+	
+	public ArrayList<KidLocationOverlay> getLocationHistory(){
+		return locationHistory;
 	}
 	
 }
