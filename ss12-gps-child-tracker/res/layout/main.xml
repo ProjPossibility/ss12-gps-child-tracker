@@ -12,10 +12,6 @@
         android:clickable="true"
         android:apiKey="0ct4EGZh-G8aGaZwuHp2UUaloCzRcyBfFMupmIg"
     />
-    
-    <Button android:id="@+id/findChildBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Find Child" />
+    <Button android:text="Find Child" android:id="@+id/findChildBtn" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_width="match_parent" android:layout_height="65dip"></Button>
 
 </RelativeLayout>
