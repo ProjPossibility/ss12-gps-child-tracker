@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainlayout"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:orientation="vertical">
+ <TextView android:layout_width="wrap_content" android:id="@+id/textView1" android:layout_height="wrap_content" android:text="Login:" android:textStyle="bold" android:textSize="8pt"></TextView>
+<TextView android:layout_width="wrap_content" android:id="@+id/textView2" android:layout_height="wrap_content" android:text="Username:" android:textSize="6pt"></TextView>
+<EditText android:layout_width="match_parent" android:id="@+id/editText1" android:layout_height="wrap_content" android:text="Username"></EditText>
+<TextView android:layout_width="wrap_content" android:id="@+id/textView3" android:layout_height="wrap_content" android:text="Password:" android:textSize="6pt"></TextView>
+<EditText android:layout_width="match_parent" android:id="@+id/editText2" android:layout_height="wrap_content" android:password="true" android:text="Password"></EditText>
+<Button android:layout_width="match_parent" android:id="@+id/button1" android:text="Login" android:layout_height="wrap_content"></Button>
+   
+</LinearLayout>
 
-    <com.google.android.maps.MapView
-        android:id="@+id/mapview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true"
-        android:apiKey="0ct4EGZh-G8aGaZwuHp2UUaloCzRcyBfFMupmIg"
-    />
-    <Button android:text="Find Child" android:id="@+id/findChildBtn" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_width="match_parent" android:layout_height="65dip"></Button>
 
-</RelativeLayout>
