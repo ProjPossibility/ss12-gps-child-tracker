@@ -14,6 +14,9 @@ public class MyItemizedOverlay extends ItemizedOverlay {
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 	Context mContext;
 
+	public MyItemizedOverlay(Drawable defaultMarker) {
+		super(boundCenterBottom(defaultMarker));
+	}
 	
 	public MyItemizedOverlay(Drawable defaultMarker, Context context) {
 		super(defaultMarker);
