@@ -1,13 +1,10 @@
 package com.gpsChildTracker;
 
-import java.util.List;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -23,7 +20,6 @@ import android.widget.Toast;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
 
 public class Map extends MapActivity {
 	LinearLayout linearLayout;
@@ -101,13 +97,13 @@ public class Map extends MapActivity {
     
     public void updateLocationHistory(){
     	jimmy.addLocationHistoryPoint(jimmy.getPoint());
-    	
     }
 
-    public void checkOutOfBounds(){
+    public void checkOutOfBounds(){    	
     	if (jimmy.getPoint().getLongitudeE6() < LEFT_BOUND || jimmy.getPoint().getLongitudeE6() > RIGHT_BOUND){
     		//notify parent 
-    		Toast.makeText(getApplicationContext(), "jimmy IS OUT OF BOUNDS!", Toast.LENGTH_SHORT);
+    		Toast.makeText(getApplicationContext(), "jimmy IS OUT OF BOUNDS!", Toast.LENGTH_SHORT).show();
+    		showDialog(0);
     	}
     }
     
