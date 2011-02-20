@@ -60,7 +60,7 @@ public class Map extends MapActivity {
         List<Overlay> mapOverlays = mapView.getOverlays();
         Drawable drawable = this.getResources().getDrawable(R.drawable.icon);
         HelloItemizedOverlay itemizedoverlay = new HelloItemizedOverlay(drawable);
-  */      
+ */      
         
         jimmy = new Kid();
         jimmy.setPoint(new GeoPoint(34022002, -118291963));
@@ -212,7 +212,8 @@ public class Map extends MapActivity {
                     .setCancelable(false)
                     .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                             dialog.cancel();
+                             //dialog.cancel();
+                        	removeDialog(0);
                         }
                     });
              AlertDialog alert = builder.create();
