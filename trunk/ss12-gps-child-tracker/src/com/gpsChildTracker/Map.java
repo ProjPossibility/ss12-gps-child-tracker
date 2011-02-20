@@ -2,11 +2,13 @@ package com.gpsChildTracker;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,11 +31,26 @@ public class Map extends MapActivity {
 	CountDownTimer updateCounter;
 	String test;
 	
-    /** Called when the activity is first created. */
+	
+	//private NotificationManager NotifManage;
+	
+	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+        
+        /*
+        String note = Context.NOTIFICATION_SERVICE;
+        NotifManage = (NotificationManager)getSystemService(note);
+        int icon = R.drawable.notificationicon;
+        CharSequence tripText = "You added a new trip";
+        long currTime = System.currentTimeMillis();
+        final Notification notif = new Notification(icon, tripText, currTime);
+        notif.defaults |= Notification.DEFAULT_VIBRATE;
+        notif.defaults = Notification.DEFAULT_ALL;
+        //Context context = getApplicationContext();
+        */
         
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
@@ -86,9 +103,27 @@ public class Map extends MapActivity {
                 mapView.getController().animateTo(jimmy.getPoint());
                 mapView.getController().setZoom(18);
                showDialog(0);
-            }        
+              
+              /*
+               Context context = getApplicationContext();
+               CharSequence contentTitle = "Trip Notification";
+               CharSequence contentText = "You added a brand new trip!";
+               Intent notifIntent = new Intent(Map.this, Map.class);
+               PendingIntent contentIntent = PendingIntent.getActivity(Map.this, 0, notifIntent, 0); 
+               //android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+               
+               notif.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+               //NotifManage.notify(1,notif);
+               */
+            }       
         });  //end onClickListener
-
+        
+       
+       
+        
+        
+        
+        
         newTripBtn = (Button) findViewById(R.id.newTripBtn);
         newTripBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -110,14 +145,21 @@ public class Map extends MapActivity {
                                 jimmy.setTrip(trip);
                                 mapView.getOverlays().add(trip.getStartOverlay());
                                 mapView.getOverlays().add(trip.getEndOverlay());
+                       
+                                
+                                
                         }                            
                 		return false;
                 	}
                 });//end ontouch
-            } //end onclick        
+                
+            } //end onclick 
+
+            
+            
         });  //end onClickListener
         
-        
+       
                
       //2000 is the starting number (in milliseconds)
       //2000 is the number to count down each time (in milliseconds) CountDownTimer? updateCounter = new CountDownTimer?(20000, 2000){
@@ -161,6 +203,8 @@ public class Map extends MapActivity {
 
     protected Dialog onCreateDialog(int id) {
         Dialog dialog;
+        Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);  
+        v.vibrate(500);
         switch(id) {
         case 0:
         	 AlertDialog.Builder builder = new AlertDialog.Builder(this);
