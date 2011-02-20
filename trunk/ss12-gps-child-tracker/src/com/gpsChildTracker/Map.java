@@ -28,8 +28,11 @@ public class Map extends MapActivity {
 	Button newTripBtn;
 	Button streetViewBtn;
 	Button findChildBtn;
-	CountDownTimer updateCounter;
+	Button locHistoryBtn;
+	//CountDownTimer updateCounter;
 	String test;
+	final int LEFT_BOUND = -118292500;
+	final int RIGHT_BOUND = -118291450;
 	
 	
 	//private NotificationManager NotifManage;
@@ -40,6 +43,7 @@ public class Map extends MapActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
         
+        //set up map with controls and control
         /*
         String note = Context.NOTIFICATION_SERVICE;
         NotifManage = (NotificationManager)getSystemService(note);
@@ -51,7 +55,6 @@ public class Map extends MapActivity {
         notif.defaults = Notification.DEFAULT_ALL;
         //Context context = getApplicationContext();
         */
-        
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapView = (MapView) findViewById(R.id.mapview);
@@ -61,29 +64,81 @@ public class Map extends MapActivity {
         Drawable drawable = this.getResources().getDrawable(R.drawable.icon);
         HelloItemizedOverlay itemizedoverlay = new HelloItemizedOverlay(drawable);
  */      
-        
+        //instantiate a kid object to track and set his initial location
         jimmy = new Kid();
         jimmy.setPoint(new GeoPoint(34022002, -118291963));
-        updateMap();
+        updateMap(); //draw location on map
         
-        new CountDownTimer(30000, 6000) {
+        initializeTimers(); //start timers to track his location history and track his current position on map
+        
+        initializeButtons(); //start all 4 buttons and adds applicable listeners
+        
+    }
+    
+    public void updateMap() {
+    	//get jimmy's position from the web, update him and his marker with his new position
+    	
+    	int jimmyLat = jimmy.getPoint().getLatitudeE6();
+    	int jimmyLng = jimmy.getPoint().getLongitudeE6();
+    	jimmyLat += 123;
+    	jimmyLng += 123;
+    	
+    	//GeoPoint p = new GeoPoint((jimmyLat+1234), (jimmyLng+1234));
+    	GeoPoint p = new GeoPoint(jimmyLat, jimmyLng);
+    	
+    	mapView.getOverlays().remove(jimmy.getOverlay());
+    	
+    	jimmy.updatePosition(p);
+        mapView.getOverlays().add(jimmy.getOverlay());
+        mapView.invalidate();
+        
+        checkOutOfBounds();
+    }
+    
+    public void updateLocationHistory(){
+    	jimmy.addLocationHistoryPoint(jimmy.getPoint());
+    	
+    }
+
+    public void checkOutOfBounds(){
+    	if (jimmy.getPoint().getLongitudeE6() < LEFT_BOUND || jimmy.getPoint().getLongitudeE6() > RIGHT_BOUND){
+    		//notify parent 
+    		Toast.makeText(getApplicationContext(), "jimmy IS OUT OF BOUNDS!", Toast.LENGTH_SHORT);
+    	}
+    }
+    
+    public void initializeTimers() {
+    	
+    	//timer to update location history
+    	new CountDownTimer(1500000, 40000) {
 
             public void onTick(long millisUntilFinished) {
-                //Toast.makeText(getApplicationContext(), "tick", Toast.LENGTH_SHORT);
-                test = Long.toString(millisUntilFinished);
-                updateMap();
-            	//mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+            	updateLocationHistory();
             }
 
             public void onFinish() {
-            	//Toast.makeText(getApplicationContext(), "DONE", Toast.LENGTH_SHORT);
-            	//mTextField.setText("done!");
+            	//do nothing
+            }
+         }.start();
+    	
+    	//update timer will currently run for 15 minutes
+    	new CountDownTimer(1500000, 6000) {
+
+            public void onTick(long millisUntilFinished) {
+                updateMap();
+            }
+
+            public void onFinish() {
+            	//do nothing
             }
          }.start();
 
-
-        
-        streetViewBtn = (Button) findViewById(R.id.streetViewBtn);
+    }
+    
+    public void initializeButtons(){
+    	
+    	//STREET VIEW BUTTON
+    	streetViewBtn = (Button) findViewById(R.id.streetViewBtn);
         streetViewBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
@@ -95,6 +150,8 @@ public class Map extends MapActivity {
             	startActivity(intent);
             }        
         });  //end onClickListener
+        
+        //FIND CHILD BUTTON
         findChildBtn= (Button) findViewById(R.id.findChildBtn);
         findChildBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -117,17 +174,12 @@ public class Map extends MapActivity {
                */
             }       
         });  //end onClickListener
-        
-       
-       
-        
-        
-        
-        
+
+        //NEW TRIP BUTTON
+
         newTripBtn = (Button) findViewById(R.id.newTripBtn);
         newTripBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Perform action on clicks
                 Toast.makeText(getApplicationContext(), "Tap to set destination", Toast.LENGTH_SHORT).show();
                 mapView.setOnTouchListener( new OnTouchListener () {
                 	public boolean onTouch(View v, MotionEvent event) {
@@ -159,43 +211,15 @@ public class Map extends MapActivity {
             
         });  //end onClickListener
         
-       
-               
-      //2000 is the starting number (in milliseconds)
-      //2000 is the number to count down each time (in milliseconds) CountDownTimer? updateCounter = new CountDownTimer?(20000, 2000){
-      /*
-      updateCounter = new CountDownTimer(20000,2000){  
-      @Override 
-      public void onFinish() {
-      //do nothing
-      }
-      
-      @Override
-      public void onTick(long millisUntilFinished) {
-      updateMap(); Toast.makeText(getApplicationContext(), "update", Toast.LENGTH_LONG);
-      }};
-      updateCounter.start();
-        */
+      //LOCATION HISTORY BUTTON
+        locHistoryBtn = (Button) findViewById(R.id.locHistoryBtn);
+        locHistoryBtn.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+            	Toast.makeText(getApplicationContext(), "This will show kid's location history over past 5 minutes", Toast.LENGTH_SHORT).show();
+            }        
+        });  //end onClickListener   
     }
     
-    public void updateMap() {
-    	//get jimmy's position from the web, update him and his marker with his new position
-    	
-    	int jimmyLat = jimmy.getPoint().getLatitudeE6();
-    	int jimmyLng = jimmy.getPoint().getLongitudeE6();
-    	jimmyLat += 123;
-    	jimmyLng += 123;
-    	
-    	//GeoPoint p = new GeoPoint((jimmyLat+1234), (jimmyLng+1234));
-    	GeoPoint p = new GeoPoint(jimmyLat, jimmyLng);
-    	
-    	mapView.getOverlays().remove(jimmy.getOverlay());
-    	
-    	jimmy.updatePosition(p);
-        mapView.getOverlays().add(jimmy.getOverlay());
-        mapView.invalidate();
-    }
-
     @Override
     protected boolean isRouteDisplayed() {
         return false;
