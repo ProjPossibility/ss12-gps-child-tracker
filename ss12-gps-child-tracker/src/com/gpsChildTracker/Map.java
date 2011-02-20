@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +26,8 @@ public class Map extends MapActivity {
 	Button newTripBtn;
 	Button streetViewBtn;
 	Button findChildBtn;
+	CountDownTimer updateCounter;
+	String test;
 	
     /** Called when the activity is first created. */
     @Override
@@ -43,7 +46,24 @@ public class Map extends MapActivity {
   */      
         
         jimmy = new Kid();
+        jimmy.setPoint(new GeoPoint(34022002, -118291963));
         updateMap();
+        
+        new CountDownTimer(30000, 6000) {
+
+            public void onTick(long millisUntilFinished) {
+                //Toast.makeText(getApplicationContext(), "tick", Toast.LENGTH_SHORT);
+                test = Long.toString(millisUntilFinished);
+                updateMap();
+            	//mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+            	//Toast.makeText(getApplicationContext(), "DONE", Toast.LENGTH_SHORT);
+            	//mTextField.setText("done!");
+            }
+         }.start();
+
 
         
         streetViewBtn = (Button) findViewById(R.id.streetViewBtn);
@@ -62,9 +82,9 @@ public class Map extends MapActivity {
         findChildBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
-                Toast.makeText(getApplicationContext(), "Your child is here!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Your child is here!" /* + test*/, Toast.LENGTH_SHORT).show();
                 mapView.getController().animateTo(jimmy.getPoint());
-                mapView.getController().setZoom(20);
+                mapView.getController().setZoom(18);
                showDialog(0);
             }        
         });  //end onClickListener
@@ -98,14 +118,36 @@ public class Map extends MapActivity {
         });  //end onClickListener
         
         
+               
+      //2000 is the starting number (in milliseconds)
+      //2000 is the number to count down each time (in milliseconds) CountDownTimer? updateCounter = new CountDownTimer?(20000, 2000){
+      /*
+      updateCounter = new CountDownTimer(20000,2000){  
+      @Override 
+      public void onFinish() {
+      //do nothing
+      }
+      
+      @Override
+      public void onTick(long millisUntilFinished) {
+      updateMap(); Toast.makeText(getApplicationContext(), "update", Toast.LENGTH_LONG);
+      }};
+      updateCounter.start();
+        */
     }
     
     public void updateMap() {
     	//get jimmy's position from the web, update him and his marker with his new position
-    	GeoPoint p = new GeoPoint(34000542,-118155164);
     	
+    	int jimmyLat = jimmy.getPoint().getLatitudeE6();
+    	int jimmyLng = jimmy.getPoint().getLongitudeE6();
+    	jimmyLat += 123;
+    	jimmyLng += 123;
     	
-    	//34	3	118	15	
+    	//GeoPoint p = new GeoPoint((jimmyLat+1234), (jimmyLng+1234));
+    	GeoPoint p = new GeoPoint(jimmyLat, jimmyLng);
+    	
+    	mapView.getOverlays().remove(jimmy.getOverlay());
     	
     	jimmy.updatePosition(p);
         mapView.getOverlays().add(jimmy.getOverlay());
