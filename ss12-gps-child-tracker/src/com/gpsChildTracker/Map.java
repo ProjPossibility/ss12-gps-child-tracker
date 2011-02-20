@@ -1,5 +1,7 @@
 package com.gpsChildTracker;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +19,9 @@ public class Map extends MapActivity {
 	LinearLayout linearLayout;
 	MapView mapView;
 	Kid jimmy;
+	Button newTripBtn;
+	Button streetViewBtn;
+	Button findChildBtn;
 	
     /** Called when the activity is first created. */
     @Override
@@ -33,7 +38,18 @@ public class Map extends MapActivity {
         updateMap();
 
         
-        Button findChildBtn = (Button) findViewById(R.id.findChildBtn);
+        findChildBtn = (Button) findViewById(R.id.findChildBtn);
+        streetViewBtn.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on clicks
+            	Intent intent = new Intent(Intent.ACTION_VIEW);
+            	String uri = "google.streetview:cbll=lat,lng&cbp=1,yaw,,pitch,zoom&mz=mapZoom";
+            	intent.setData(Uri.parse(uri));
+            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            	startActivity(intent);
+            }        
+        });  //end onClickListener
+        streetViewBtn= (Button) findViewById(R.id.streetViewBtn);
         findChildBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
@@ -43,7 +59,7 @@ public class Map extends MapActivity {
             }        
         });  //end onClickListener
 
-        Button newTripBtn = (Button) findViewById(R.id.newTripBtn);
+        newTripBtn = (Button) findViewById(R.id.newTripBtn);
         newTripBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
