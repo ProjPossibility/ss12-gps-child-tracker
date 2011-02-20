@@ -11,7 +11,7 @@ import com.google.android.maps.Overlay;
 
 public class kidLocationOverlay extends Overlay {
 	
-	public void draw(Canvas canvas, MapView mapView, boolean shadow, long when) {
+	public boolean draw(Canvas canvas, MapView mapView, boolean shadow, long when) {
 		/*
 		super.draw(canvas, mapView, shadow);
 		Paint paint = new Paint();
