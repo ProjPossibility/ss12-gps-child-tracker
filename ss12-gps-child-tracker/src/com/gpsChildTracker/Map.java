@@ -102,8 +102,8 @@ public class Map extends MapActivity {
                 Toast.makeText(getApplicationContext(), "Your child is here!" /* + test*/, Toast.LENGTH_SHORT).show();
                 mapView.getController().animateTo(jimmy.getPoint());
                 mapView.getController().setZoom(18);
-               showDialog(0);
-              
+       
+             
               /*
                Context context = getApplicationContext();
                CharSequence contentTitle = "Trip Notification";
@@ -147,7 +147,7 @@ public class Map extends MapActivity {
                                 mapView.getOverlays().add(trip.getEndOverlay());
                        
                                 
-                                
+                             
                         }                            
                 		return false;
                 	}
@@ -200,7 +200,7 @@ public class Map extends MapActivity {
     protected boolean isRouteDisplayed() {
         return false;
     }
-
+    
     protected Dialog onCreateDialog(int id) {
         Dialog dialog;
         Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);  
@@ -208,17 +208,31 @@ public class Map extends MapActivity {
         switch(id) {
         case 0:
         	 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-             builder.setMessage("You Found Your Child!")
+             builder.setMessage("Jimmy Is Out of Bounds!")
                     .setCancelable(false)
                     .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                             //dialog.cancel();
                         	removeDialog(0);
                         }
                     });
              AlertDialog alert = builder.create();
              dialog = alert;
              break;
+             /*
+        case 1:
+        	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setMessage("New Trip!")
+                   .setCancelable(false)
+                   .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                       public void onClick(DialogInterface dialog, int id) {
+                       	//dialog.cancel();
+                            removeDialog(1);
+                       }
+                   });
+            alert = builder1.create();
+            dialog = alert;
+            break;
+            */
         default:
             dialog = null;
         }
