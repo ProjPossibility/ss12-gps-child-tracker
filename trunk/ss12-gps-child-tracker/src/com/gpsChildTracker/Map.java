@@ -1,7 +1,8 @@
 package com.gpsChildTracker;
 
-import java.util.List;
-import android.graphics.drawable.Drawable;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,10 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
-import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
 
 public class Map extends MapActivity {
 	LinearLayout linearLayout;
@@ -66,6 +65,7 @@ public class Map extends MapActivity {
                 Toast.makeText(getApplicationContext(), "Your child is here!", Toast.LENGTH_SHORT).show();
                 mapView.getController().animateTo(jimmy.getPoint());
                 mapView.getController().setZoom(6);
+               showDialog(0);
             }        
         });  //end onClickListener
 
@@ -113,6 +113,25 @@ public class Map extends MapActivity {
         return false;
     }
 
-
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog;
+        switch(id) {
+        case 0:
+        	 AlertDialog.Builder builder = new AlertDialog.Builder(this);
+             builder.setMessage("You Found Your Child!")
+                    .setCancelable(false)
+                    .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                             dialog.cancel();
+                        }
+                    });
+             AlertDialog alert = builder.create();
+             dialog = alert;
+             break;
+        default:
+            dialog = null;
+        }
+        return dialog;
+    }
 }
 
