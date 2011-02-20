@@ -14,34 +14,41 @@ import com.google.android.maps.MapView;
 public class Map extends MapActivity{
 	LinearLayout linearLayout;
 	MapView mapView;
-	GeoPoint kidGeoPoint;
+	Kid jimmy;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
-       
+        
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
-        kidGeoPoint = new GeoPoint(12000000, 3000000);
         mapView = (MapView) findViewById(R.id.mapview);
         
+        jimmy = new Kid();
+        updateMap();
+
         
         Button findChildBtn = (Button) findViewById(R.id.findChildBtn);
         findChildBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
                 Toast.makeText(getApplicationContext(), "Pressed!", Toast.LENGTH_SHORT).show();
-                mapView.getController().animateTo(kidGeoPoint);
+                mapView.getController().animateTo(jimmy.getPoint());
                 mapView.getController().setZoom(6);
            }	
-        });  
+        });  //end onClickListener
         
-        kidLocationOverlay kidLocationOverlay = new kidLocationOverlay(kidGeoPoint);        
-        mapView.getOverlays().add(kidLocationOverlay);
+        
     }
     
+    public void updateMap() {
+    	//get jimmy's position from the web, update him and his marker with his new position
+    	GeoPoint p = new GeoPoint(12000000, 3000000);
+    	jimmy.updatePosition(p);
+        mapView.getOverlays().add(jimmy.getOverlay());
+    }
     
     @Override
     protected boolean isRouteDisplayed() {

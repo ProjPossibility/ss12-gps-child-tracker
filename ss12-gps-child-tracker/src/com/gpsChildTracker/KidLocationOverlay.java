@@ -10,11 +10,11 @@ import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 
-public class kidLocationOverlay extends Overlay {
+public class KidLocationOverlay extends Overlay {
 	
 	GeoPoint point;
 	
-	public kidLocationOverlay(GeoPoint p){
+	public KidLocationOverlay(GeoPoint p){
 		point = p;
 	}
 	
@@ -25,7 +25,7 @@ public class kidLocationOverlay extends Overlay {
 		// Converts lat/lng-Point to OUR coordinates on the screen.
 		Point myScreenCoords = new Point();
 		mapView.getProjection().toPixels(point, myScreenCoords);
-		paint.setStrokeWidth(1);
+		paint.setStrokeWidth(20);
 		paint.setARGB(255, 255, 255, 255);
 		paint.setStyle(Paint.Style.STROKE);
 		/*

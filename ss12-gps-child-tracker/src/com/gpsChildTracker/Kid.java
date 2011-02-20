@@ -5,16 +5,34 @@ import com.google.android.maps.GeoPoint;
 public class Kid {
 	
 	//Variables
-	GeoPoint KidPoint = new GeoPoint(0,0);  //Stores the kid's current location
-	kidLocationOverlay KidLocation;         //Stores the overlay to display for this kid  ...?
+	GeoPoint point;  //Stores the kid's current latitude and longitude
+	KidLocationOverlay overlay;         //Stores the overlay to display for this kid
 	
-	//Functions
-	public GeoPoint getKidPoint(){
-		return KidPoint;
+	//default constructor
+	public Kid() {
+		//nothing happens
 	}
 	
-	public void setKidPoint(GeoPoint GP){
-		KidPoint = GP;
+	//Functions
+	public void updatePosition(GeoPoint p){
+		point = p;
+		overlay = new KidLocationOverlay(p);
+	}
+	
+	public GeoPoint getPoint(){
+		return point;
+	}
+	
+	public void setPoint(GeoPoint p){
+		point = p;
+	}
+	
+	public KidLocationOverlay getOverlay() {
+		return overlay;
+	}
+	
+	public void setOverlay(KidLocationOverlay o) {
+		overlay = o;
 	}
 
 	
