@@ -7,6 +7,7 @@ public class Kid {
 	//Variables
 	GeoPoint point;  //Stores the kid's current latitude and longitude
 	KidLocationOverlay overlay;         //Stores the overlay to display for this kid
+	Trip trip;    //Stores the kid's trip start and end points
 	
 	//default constructor
 	public Kid() {
@@ -35,6 +36,8 @@ public class Kid {
 		overlay = o;
 	}
 
-	
+	public void setTrip(GeoPoint sPoint, GeoPoint ePoint){
+		trip = new Trip(sPoint, ePoint);
+	}
 	
 }

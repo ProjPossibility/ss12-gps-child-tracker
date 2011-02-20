@@ -47,7 +47,7 @@ public class Map extends MapActivity {
         newTripBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
-                Toast.makeText(getApplicationContext(), "Tap to set destination", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Tap to set destination", Toast.LENGTH_SHORT).show();
                 mapView.setOnTouchListener( new OnTouchListener () {
                 	public boolean onTouch(View v, MotionEvent event) {
                         if (true /*event.getAction() == 1*/) {                
@@ -57,9 +57,10 @@ public class Map extends MapActivity {
                                 Toast.makeText(getBaseContext(), 
                                     p.getLatitudeE6() / 1E6 + "," + 
                                     p.getLongitudeE6() /1E6 , 
-                                    Toast.LENGTH_LONG).show();
+                                    (Toast.LENGTH_LONG + Toast.LENGTH_SHORT) / 2).show();
 
                                 mapView.invalidate();
+                                jimmy.setTrip(jimmy.point, p);
                         }                            
                 		return false;
                 	}
