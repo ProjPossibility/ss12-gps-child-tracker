@@ -6,7 +6,7 @@
     <com.google.android.maps.MapView android:layout_height="fill_parent" android:id="@+id/mapview" android:clickable="true" android:layout_width="fill_parent" android:apiKey="0ct4EGZh-G8aGaZwuHp2UUaloCzRcyBfFMupmIg"></com.google.android.maps.MapView>
     <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:layout_width="match_parent">
         <Button android:text="Find Child" android:id="@+id/findChildBtn" android:layout_height="wrap_content" android:layout_width="wrap_content"></Button>
-        <Button android:clickable="true" android:text="New Trip" android:layout_width="wrap_content" android:id="@+id/newTrip" android:layout_height="wrap_content"></Button>
+        <Button android:clickable="true" android:text="New Trip" android:layout_width="wrap_content" android:id="@+id/newTripBtn" android:layout_height="wrap_content"></Button>
     </LinearLayout>
 
 </RelativeLayout>
