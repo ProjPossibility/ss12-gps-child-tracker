@@ -36,8 +36,8 @@ public class Kid {
 		overlay = o;
 	}
 
-	public void setTrip(GeoPoint sPoint, GeoPoint ePoint){
-		trip = new Trip(sPoint, ePoint);
+	public void setTrip(Trip tripIn){
+		trip = tripIn;
 	}
 	
 }

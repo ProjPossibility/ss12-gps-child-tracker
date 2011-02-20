@@ -1,5 +1,7 @@
 package com.gpsChildTracker;
 
+import java.util.List;
+import android.graphics.drawable.Drawable;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
 public class Map extends MapActivity {
 	LinearLayout linearLayout;
@@ -32,24 +36,30 @@ public class Map extends MapActivity {
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapView = (MapView) findViewById(R.id.mapview);
-
+/*
+        ItemizedOverlay itemizedOverlay = new ItemizedOverlay(android.graphics.drawable.Drawable, defaultMarker);
+        List<Overlay> mapOverlays = mapView.getOverlays();
+        Drawable drawable = this.getResources().getDrawable(R.drawable.icon);
+        HelloItemizedOverlay itemizedoverlay = new HelloItemizedOverlay(drawable);
+  */      
         
         jimmy = new Kid();
         updateMap();
 
         
-        findChildBtn = (Button) findViewById(R.id.findChildBtn);
+        streetViewBtn = (Button) findViewById(R.id.streetViewBtn);
         streetViewBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
             	Intent intent = new Intent(Intent.ACTION_VIEW);
-            	String uri = "google.streetview:cbll=lat,lng&cbp=1,yaw,,pitch,zoom&mz=mapZoom";
+            	String uri = "google.streetview:cbll=40.758437,-73.985164&cbp=11,42.04,,0,-6.66";
+            			//"cbll=34022411,-118283983&cbp=1,1,,0,1.0&mz=mapZoom";
             	intent.setData(Uri.parse(uri));
             	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             	startActivity(intent);
             }        
         });  //end onClickListener
-        streetViewBtn= (Button) findViewById(R.id.streetViewBtn);
+        findChildBtn= (Button) findViewById(R.id.findChildBtn);
         findChildBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
@@ -76,7 +86,10 @@ public class Map extends MapActivity {
                                     (Toast.LENGTH_LONG + Toast.LENGTH_SHORT) / 2).show();
 
                                 mapView.invalidate();
-                                jimmy.setTrip(jimmy.point, p);
+                                Trip trip = new Trip(jimmy.point, p);
+                                jimmy.setTrip(trip);
+                                mapView.getOverlays().add(trip.getStartOverlay());
+                                mapView.getOverlays().add(trip.getEndOverlay());
                         }                            
                 		return false;
                 	}

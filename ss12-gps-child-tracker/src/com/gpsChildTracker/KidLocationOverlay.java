@@ -5,6 +5,7 @@ package com.gpsChildTracker;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
@@ -33,7 +34,7 @@ public class KidLocationOverlay extends Overlay {
 		canvas.drawBitmap(bmp, myScreenCoords.x, myScreenCoords.y, paint);
 		canvas.drawText("Here I am...", myScreenCoords.x, myScreenCoords.y, paint);
 		*/
-		
 		canvas.drawPoint(myScreenCoords.x, myScreenCoords.y, paint);
+		//canvas.drawPicture(new Picture(R.drawable.icon), new Rect(myScreenCoords.x - 5, myScreenCoords.y + 5, myScreenCoords.x + 5, myScreenCoords.y - 5));
 		}
 }
