@@ -7,3 +7,7 @@ The kid's name is always Jimmy.
 jimmy is always lowercase.
 
 Jimmy lives in New York.
+
+Wow now, how later :)
+
+If the checkbox has a check, but the check is greyed out, by the transitive propery of checkboxes - the box is still not checked.
