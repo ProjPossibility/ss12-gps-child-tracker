@@ -1,10 +1,13 @@
 package com.gpsChildTracker;
 
+import java.util.List;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
 public class Map extends MapActivity {
 	LinearLayout linearLayout;
@@ -30,7 +34,6 @@ public class Map extends MapActivity {
 	Button findChildBtn;
 	Button locHistoryBtn;
 	//CountDownTimer updateCounter;
-	String test;
 	final int LEFT_BOUND = -118292500;
 	final int RIGHT_BOUND = -118291450;
 	
@@ -42,6 +45,12 @@ public class Map extends MapActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+        
+        /*
+        List<Overlay> mapOverlays = mapView.getOverlays();
+        Drawable drawable = this.getResources().getDrawable(R.drawable.icon);
+        MyItemizedOverlay myItemizedOverlay = new MyItemizedOverlay(drawable);
+        */
         
         //set up map with controls and control
         /*
@@ -58,15 +67,10 @@ public class Map extends MapActivity {
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapView = (MapView) findViewById(R.id.mapview);
-/*
-        ItemizedOverlay itemizedOverlay = new ItemizedOverlay(android.graphics.drawable.Drawable, defaultMarker);
-        List<Overlay> mapOverlays = mapView.getOverlays();
-        Drawable drawable = this.getResources().getDrawable(R.drawable.icon);
-        HelloItemizedOverlay itemizedoverlay = new HelloItemizedOverlay(drawable);
- */      
+
         //instantiate a kid object to track and set his initial location
         jimmy = new Kid();
-        jimmy.setPoint(new GeoPoint(34022002, -118291963));
+        jimmy.updatePosition(new GeoPoint(34022002, -118291963));
         updateMap(); //draw location on map
         
         initializeTimers(); //start timers to track his location history and track his current position on map
@@ -156,7 +160,7 @@ public class Map extends MapActivity {
         findChildBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
-                Toast.makeText(getApplicationContext(), "Your child is here!" /* + test*/, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Your child is here!", Toast.LENGTH_SHORT).show();
                 mapView.getController().animateTo(jimmy.getPoint());
                 mapView.getController().setZoom(18);
        

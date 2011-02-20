@@ -37,4 +37,8 @@ public class KidLocationOverlay extends Overlay {
 		canvas.drawPoint(myScreenCoords.x, myScreenCoords.y, paint);
 		//canvas.drawPicture(new Picture(R.drawable.icon), new Rect(myScreenCoords.x - 5, myScreenCoords.y + 5, myScreenCoords.x + 5, myScreenCoords.y - 5));
 		}
+	
+	public GeoPoint getPoint(){
+		return point;
+	}
 }
