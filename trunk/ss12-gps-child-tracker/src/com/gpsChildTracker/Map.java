@@ -51,7 +51,7 @@ public class Map extends MapActivity {
             public void onClick(View v) {
                 // Perform action on clicks
             	Intent intent = new Intent(Intent.ACTION_VIEW);
-            	String uri = "google.streetview:cbll=40.758437,-73.985164&cbp=11,42.04,,0,-6.66";
+            	String uri = "google.streetview:cbll=" + (double)((double) jimmy.getPoint().getLatitudeE6() / 1E6) + "," + (double)((double) jimmy.getPoint().getLongitudeE6() / 1E6) + "&cbp=11,42.04,,0,-6.66";  //"google.streetview:cbll=40.758437,-73.985164&cbp=11,42.04,,0,-6.66";
             			//"cbll=34022411,-118283983&cbp=1,1,,0,1.0&mz=mapZoom";
             	intent.setData(Uri.parse(uri));
             	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -64,7 +64,7 @@ public class Map extends MapActivity {
                 // Perform action on clicks
                 Toast.makeText(getApplicationContext(), "Your child is here!", Toast.LENGTH_SHORT).show();
                 mapView.getController().animateTo(jimmy.getPoint());
-                mapView.getController().setZoom(6);
+                mapView.getController().setZoom(20);
                showDialog(0);
             }        
         });  //end onClickListener
@@ -102,7 +102,11 @@ public class Map extends MapActivity {
     
     public void updateMap() {
     	//get jimmy's position from the web, update him and his marker with his new position
-    	GeoPoint p = new GeoPoint(12000000, 3000000);
+    	GeoPoint p = new GeoPoint(34000542,-118155164);
+    	
+    	
+    	//34	3	118	15	
+    	
     	jimmy.updatePosition(p);
         mapView.getOverlays().add(jimmy.getOverlay());
         mapView.invalidate();
