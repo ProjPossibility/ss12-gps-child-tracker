@@ -5,3 +5,5 @@ CONSTANTS_LOOK_LIKE_THIS;
 The kid's name is always Jimmy.
 
 jimmy is always lowercase.
+
+Jimmy lives in New York.
