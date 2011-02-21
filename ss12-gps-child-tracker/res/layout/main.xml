@@ -9,7 +9,7 @@
 <TextView android:layout_width="wrap_content" android:id="@+id/textView3" android:layout_height="wrap_content" android:text="Password:" android:textSize="6pt"></TextView>
 <EditText android:layout_width="match_parent" android:id="@+id/editText2" android:layout_height="wrap_content" android:password="true" android:text="Password"></EditText>
 <Button android:layout_width="match_parent" android:id="@+id/loginButton" android:text="Login" android:layout_height="wrap_content"></Button>
-<CheckBox android:layout_width="wrap_content" android:text="Child's device" android:id="@+id/checkBox1" android:layout_height="wrap_content" android:layout_gravity="center"></CheckBox>
+<CheckBox android:layout_width="wrap_content" android:text="Child's device" android:id="@+id/childCheck" android:layout_height="wrap_content" android:layout_gravity="center"></CheckBox>
    
 </LinearLayout>
 
