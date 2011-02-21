@@ -110,7 +110,7 @@ public class Map extends MapActivity {
     	//jimmy.updatePosition(p);
     	//myItemizedOverlay.addOverlay(jimmy.getOverlay());
     	//mapOverlays.add(myItemizedOverlay);
-    	
+    	mapOverlays.remove(mapOverlays.size()-1);
     	myItemizedOverlay.addOverlay(jimmy.getOverlay());
     	mapOverlays.add(myItemizedOverlay);
     	
@@ -240,7 +240,6 @@ public class Map extends MapActivity {
         locHistoryBtn = (Button) findViewById(R.id.locHistoryBtn);
         locHistoryBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-            	
             	if(!showingLocHist){
                 	Toast.makeText(getApplicationContext(), "This will show kid's location history over past 5 minutes", Toast.LENGTH_SHORT).show();
                 	mapOverlays.addAll(jimmy.getLocationHistory());
