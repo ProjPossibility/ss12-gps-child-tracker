@@ -241,6 +241,7 @@ public class Map extends MapActivity {
             public void onClick(View v) {
             	Toast.makeText(getApplicationContext(), "This will show kid's location history over past 5 minutes", Toast.LENGTH_SHORT).show();
             	mapOverlays.addAll(jimmy.getLocationHistory());
+            	mapView.invalidate();
             }        
         });  //end onClickListener   
     }
