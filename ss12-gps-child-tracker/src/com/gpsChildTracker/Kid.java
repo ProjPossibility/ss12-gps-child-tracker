@@ -3,25 +3,27 @@ package com.gpsChildTracker;
 import java.util.ArrayList;
 
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.OverlayItem;
 
 public class Kid {
 	
 	//Variables
 	GeoPoint point;  //Stores the kid's current latitude and longitude
-	KidLocationOverlay overlay;         //Stores the overlay to display for this kid
+	OverlayItem overlay;         //Stores the overlay to display for this kid
 	Trip trip;    //Stores the kid's trip start and end points
 	ArrayList<KidLocationOverlay> locationHistory;
 	
 	//default constructor
 	public Kid() {
 		locationHistory = new ArrayList<KidLocationOverlay>();
+        overlay = new OverlayItem(getPoint(), "Hola, Mundo!", "I'm in Mexico City!");
 		//nothing happens
 	}
 	
 	//Functions
 	public void updatePosition(GeoPoint p){
 		point = p;
-		overlay = new KidLocationOverlay(p);
+		overlay = new OverlayItem(p, "Hola, Mundo!", "I'm in Mexico City!");
 	}
 	
 	public GeoPoint getPoint(){
@@ -32,11 +34,11 @@ public class Kid {
 		point = p;
 	}
 	
-	public KidLocationOverlay getOverlay() {
+	public OverlayItem getOverlay() {
 		return overlay;
 	}
 	
-	public void setOverlay(KidLocationOverlay o) {
+	public void setOverlay(OverlayItem o) {
 		overlay = o;
 	}
 
