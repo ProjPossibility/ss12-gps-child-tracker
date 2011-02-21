@@ -80,8 +80,13 @@ public class Map extends MapActivity {
     	
     	int jimmyLat = jimmy.getPoint().getLatitudeE6();
     	int jimmyLng = jimmy.getPoint().getLongitudeE6();
+    	
+    	if(jimmyLat > 34024002){
+    		jimmyLat += 0;
+    		jimmyLng += 123;
+    	}
     	jimmyLat += 123;
-    	jimmyLng += 123;
+    	jimmyLng += 0;
     	
     	//GeoPoint p = new GeoPoint((jimmyLat+1234), (jimmyLng+1234));
     	GeoPoint p = new GeoPoint(jimmyLat, jimmyLng);
