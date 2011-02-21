@@ -233,8 +233,6 @@ public class Map extends MapActivity {
                 
             } //end onclick 
 
-            
-            
         });  //end onClickListener
         
       //LOCATION HISTORY BUTTON
@@ -242,6 +240,7 @@ public class Map extends MapActivity {
         locHistoryBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	Toast.makeText(getApplicationContext(), "This will show kid's location history over past 5 minutes", Toast.LENGTH_SHORT).show();
+            	mapOverlays.addAll(jimmy.getLocationHistory());
             }        
         });  //end onClickListener   
     }
