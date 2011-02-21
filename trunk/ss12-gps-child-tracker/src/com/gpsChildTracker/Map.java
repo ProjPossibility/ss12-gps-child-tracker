@@ -1,10 +1,13 @@
 package com.gpsChildTracker;
 
+import java.util.List;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
 public class Map extends MapActivity {
 	LinearLayout linearLayout;
@@ -30,9 +34,11 @@ public class Map extends MapActivity {
 	Button findChildBtn;
 	Button locHistoryBtn;
 	//CountDownTimer updateCounter;
-	final int LEFT_BOUND = -118292500;
-	final int RIGHT_BOUND = -118291450;
-	
+	final int LEFT_BOUND = -118291700-500;
+	final int RIGHT_BOUND = -118291700+500;
+	Drawable drawable;
+	MyItemizedOverlay myItemizedOverlay;
+	List<Overlay> mapOverlays;
 	
 	//private NotificationManager NotifManage;
 	
@@ -42,11 +48,6 @@ public class Map extends MapActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
         
-        /*
-        List<Overlay> mapOverlays = mapView.getOverlays();
-        Drawable drawable = this.getResources().getDrawable(R.drawable.icon);
-        MyItemizedOverlay myItemizedOverlay = new MyItemizedOverlay(drawable);
-        */
         
         //set up map with controls and control
         /*
@@ -64,9 +65,16 @@ public class Map extends MapActivity {
         mapView.setBuiltInZoomControls(true);
         mapView = (MapView) findViewById(R.id.mapview);
 
+        mapOverlays = mapView.getOverlays();
+        drawable = this.getResources().getDrawable(R.drawable.icon);
+        myItemizedOverlay = new MyItemizedOverlay(drawable);
+                
         //instantiate a kid object to track and set his initial location
         jimmy = new Kid();
-        jimmy.updatePosition(new GeoPoint(34022002, -118291963));
+        jimmy.updatePosition(new GeoPoint(34022002, -118291700));
+    	myItemizedOverlay.addOverlay(jimmy.getOverlay());
+    	mapOverlays.add(myItemizedOverlay);
+    	
         updateMap(); //draw location on map
         
         initializeTimers(); //start timers to track his location history and track his current position on map
@@ -85,16 +93,29 @@ public class Map extends MapActivity {
     		jimmyLat += 0;
     		jimmyLng += 123;
     	}
+    	else if(jimmyLat > 34024502){
+    		jimmyLat += 0;
+    		jimmyLng -= 123;
+    	}
     	jimmyLat += 123;
     	jimmyLng += 0;
     	
     	//GeoPoint p = new GeoPoint((jimmyLat+1234), (jimmyLng+1234));
     	GeoPoint p = new GeoPoint(jimmyLat, jimmyLng);
     	
-    	mapView.getOverlays().remove(jimmy.getOverlay());
+    	
+    	//mapOverlays.remove(myItemizedOverlay);  //Maybe remove this?
+    	//myItemizedOverlay = new MyItemizedOverlay(drawable);
+    	//jimmy.updatePosition(p);
+    	//myItemizedOverlay.addOverlay(jimmy.getOverlay());
+    	//mapOverlays.add(myItemizedOverlay);
+    	
+    	myItemizedOverlay.addOverlay(jimmy.getOverlay());
+    	mapOverlays.add(myItemizedOverlay);
     	
     	jimmy.updatePosition(p);
-        mapView.getOverlays().add(jimmy.getOverlay());
+    	
+        mapView.getOverlays();
         mapView.invalidate();
         
         checkOutOfBounds();
