@@ -8,7 +8,9 @@
         <Button android:text="Find Child" android:id="@+id/findChildBtn" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
         <Button android:clickable="true" android:text="New Trip" android:layout_width="wrap_content" android:id="@+id/newTripBtn" android:layout_height="wrap_content"></Button>
     	<Button android:clickable="true" android:text="View Surroundings" android:layout_width="wrap_content" android:id="@+id/streetViewBtn" android:layout_height="wrap_content"></Button>
-    	<Button android:clickable="true" android:text="View Location History" android:layout_width="wrap_content" android:id="@+id/locHistoryBtn" android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentBottom="true" android:id="@+id/linearLayout2">
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:clickable="true" android:id="@+id/locHistoryBtn" android:text="View Location History"></Button>
     </LinearLayout>
 
 </RelativeLayout>
