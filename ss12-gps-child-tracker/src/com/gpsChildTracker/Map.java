@@ -39,6 +39,7 @@ public class Map extends MapActivity {
 	Drawable drawable;
 	MyItemizedOverlay myItemizedOverlay;
 	List<Overlay> mapOverlays;
+	boolean showingLocHist;
 	
 	//private NotificationManager NotifManage;
 	
@@ -239,9 +240,19 @@ public class Map extends MapActivity {
         locHistoryBtn = (Button) findViewById(R.id.locHistoryBtn);
         locHistoryBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-            	Toast.makeText(getApplicationContext(), "This will show kid's location history over past 5 minutes", Toast.LENGTH_SHORT).show();
-            	mapOverlays.addAll(jimmy.getLocationHistory());
-            	mapView.invalidate();
+            	
+            	if(!showingLocHist){
+                	Toast.makeText(getApplicationContext(), "This will show kid's location history over past 5 minutes", Toast.LENGTH_SHORT).show();
+                	mapOverlays.addAll(jimmy.getLocationHistory());
+                	mapView.invalidate();
+                	showingLocHist = true;
+            	}
+            	else {
+            		mapOverlays.removeAll(jimmy.getLocationHistory());
+            		mapView.invalidate();
+            		showingLocHist = false;
+            	}
+
             }        
         });  //end onClickListener   
     }
