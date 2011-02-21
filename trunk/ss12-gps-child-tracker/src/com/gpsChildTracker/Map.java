@@ -90,16 +90,16 @@ public class Map extends MapActivity {
     	int jimmyLat = jimmy.getPoint().getLatitudeE6();
     	int jimmyLng = jimmy.getPoint().getLongitudeE6();
     	
-    	if(jimmyLat > 34024002 && jimmyLat < 34024502){
+    	if(jimmyLat > 34025002 && jimmyLat < 34025502){
     		jimmyLng += 150;
     	}
-    	else if(jimmyLat > 34024502 && jimmyLat < 34025002){
+    	else if(jimmyLat > 34025502 && jimmyLat < 34026002){
     		jimmyLng -= 150;
     	}
     	else{
     		jimmyLng += 0;
     	}
-    	jimmyLat += 123;
+    	jimmyLat += 100;   //Target is go up 3000
 
     	
     	//GeoPoint p = new GeoPoint((jimmyLat+1234), (jimmyLng+1234));
