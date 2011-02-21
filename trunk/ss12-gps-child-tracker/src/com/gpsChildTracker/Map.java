@@ -112,7 +112,7 @@ public class Map extends MapActivity {
     	//myItemizedOverlay.addOverlay(jimmy.getOverlay());
     	//mapOverlays.add(myItemizedOverlay);
     	
-    	mapOverlays.remove(mapOverlays.size()-1);
+    	mapOverlays.remove(myItemizedOverlay);
     	myItemizedOverlay.getList().remove(jimmy.getOverlay());
     	jimmy.updatePosition(p);
     	myItemizedOverlay.addOverlay(jimmy.getOverlay());
