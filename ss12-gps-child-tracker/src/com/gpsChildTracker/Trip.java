@@ -13,7 +13,11 @@ public class Trip {
 		startPoint = sPoint;
 		endPoint = ePoint;
 		startOverlay = new KidLocationOverlay(sPoint);
+		startOverlay.setRed(0);
+		startOverlay.setBlue(255);
 		endOverlay = new KidLocationOverlay(ePoint);
+		endOverlay.setRed(0);
+		endOverlay.setBlue(255);
 	}
 	
 	public GeoPoint getStartPoint(){
