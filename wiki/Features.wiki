@@ -2,6 +2,7 @@
 
 ==Parent Mode:==
   ===Implemented:===
+    * Login Interface
     * Track progress of child on a map and center on them via button
     * Create a trip for the child, with a starting and ending location
     * View child's location history via button
@@ -17,7 +18,7 @@
 
 ==Child Mode==
   ===Implemented:===
-   * Login functionality
+   * Login Interface
 
   ===In Progress:===
     * Run in background
