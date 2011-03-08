@@ -10,7 +10,7 @@
     * Notify via buzz when child leaves boundary
 
   ===In Progress:===
-    * Contact Parent
+    * Contact Child
     * Track trip time
     * Secure Login
     * Set variable boundaries
