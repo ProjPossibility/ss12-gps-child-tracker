@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainlayout"
     android:orientation="vertical"
-    android:layout_height="fill_parent" android:layout_width="match_parent">
+    android:layout_height="fill_parent" android:layout_width="fill_parent">
     <com.google.android.maps.MapView android:layout_height="fill_parent" android:id="@+id/mapview" android:clickable="true" android:layout_width="fill_parent" android:apiKey="0ct4EGZh-G8aGaZwuHp2UUaloCzRcyBfFMupmIg"></com.google.android.maps.MapView>
     <LinearLayout android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:layout_width="wrap_content">
         <Button android:text="Find Child" android:id="@+id/findChildBtn" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
