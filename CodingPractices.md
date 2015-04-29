@@ -1,0 +1,15 @@
+useCamelCasePleaseForVariablesAndMethodsPlease;
+
+CONSTANTS\_LOOK\_LIKE\_THIS;
+
+The kid's name is always Jimmy.
+
+jimmy is always lowercase.
+
+Jimmy lives in New York.
+
+Wow now, how later :)
+
+If the check box has a check, but the check is greyed out, by the transitive property of check boxes - the box is still not checked.
+
+jimmy is diverse.

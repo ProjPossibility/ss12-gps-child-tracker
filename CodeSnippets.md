@@ -1,0 +1,39 @@
+import com.deltabravomedia.directions.DrivingDirections;
+import com.deltabravomedia.directions.DrivingDirectionsFactory;
+import com.deltabravomedia.directions.Placemark;
+import com.deltabravomedia.directions.Route;
+import com.deltabravomedia.directions.DrivingDirections.IDirectionsListener;
+import com.deltabravomedia.directions.DrivingDirections.Mode;
+
+
+
+
+
+DrivingDirections.Mode mode = Mode.DRIVING; // or Mode.WALKING
+DrivingDirections directions = DrivingDirectionsFactory.createDrivingDirections();
+directions.driveTo(startPoint, endPoint, mode, this);
+
+The Activity can then implement the interface:
+DrivingDirections.IDirectionsListener
+
+
+
+UPDATE TIMER
+//2000 is the starting number (in milliseconds)
+> //2000 is the number to count down each time (in milliseconds)
+> CountDownTimer updateCounter = new CountDownTimer(20000, 2000){
+
+> @Override
+> public void onFinish() {
+> > //do nothing
+
+> }
+
+> @Override
+> public void onTick(long millisUntilFinished) {
+> > updateMap();
+> > Toast.makeText(getApplicationContext(), "update", Toast.LENGTH\_LONG);
+
+> }};
+
+> updateCounter.start();

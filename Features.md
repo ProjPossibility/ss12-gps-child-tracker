@@ -1,0 +1,25 @@
+# Features #
+
+## Parent Mode: ##
+> ### Implemented: ###
+    * Login Interface
+    * Track progress of child on a map and center on them via button
+    * Create a trip for the child, with a starting and ending location
+    * View child's location history via button
+    * View child's current surroundings via Street View
+    * Notify via buzz when child leaves boundary
+
+> ### In Progress: ###
+    * Contact Child
+    * Track trip time
+    * Secure Login
+    * Set variable boundaries
+    * Notification in notification bar when child leaves boundaries
+
+## Child Mode ##
+> ### Implemented: ###
+    * Login Interface
+
+> ### In Progress: ###
+    * Run in background
+    * Contact Parent
